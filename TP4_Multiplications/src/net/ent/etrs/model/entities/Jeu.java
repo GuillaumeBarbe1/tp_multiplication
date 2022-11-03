@@ -15,10 +15,11 @@ public class Jeu {
 
 
     // etat d'avancement du jeu (--x..)
-    private char[] etatAvancement;
+    private static char[] etatAvancement = {'.', '.', '.', '.', '.'};
+    // Pour faire la note sur 5 a la fin
+    private static int reponse;
     // Compte le nombre d'opérations deja proposées
     private int nbOperation;
-    private int reponse;
 
     // Constructeur(s)
 
@@ -66,21 +67,28 @@ public class Jeu {
         return nombreAleatoire;
     }
 
-    public void setReponse(int reponse) {
-        this.reponse = reponse;
+    public static String formaterEtatAvancement(boolean reponse, int i) {
+        if (reponse) {
+            etatAvancement[i] = '-';
+        } else {
+            etatAvancement[i] = 'x';
+        }
+        return new String(etatAvancement);
+    }
+
+    public static String formaterResultat(boolean resultat) {
+        if (resultat) {
+            reponse += 1;
+        }
+        return (String.valueOf(reponse));
+    }
+
+    public static void reset() {
+        reponse = 0;
+        etatAvancement = new char[]{'.', '.', '.', '.', '.'};
     }
 
     public int getOperation() {
         return NB_OPERATION;
-    }
-
-    public String formaterEtatAvancement() {
-
-        return null;
-    }
-
-    public String formaterResultat() {
-
-        return null;
     }
 }

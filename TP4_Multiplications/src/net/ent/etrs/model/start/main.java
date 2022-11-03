@@ -38,8 +38,18 @@ public class main {
 
                     for (int i = 0; i < NB_OPERATION; i++) {
                         int addition = (new Operation(ADDITION, operandeAddition, Jeu.tirerOperandeNonTiree())).operer();
-                        System.out.printf("%s + %s = %s%n", Operation.getOperande1(), Operation.getOperande2(), addition);
+                        System.out.printf("%s + %s = ", Operation.getOperande1(), Operation.getOperande2());
+                        if (LectureConsole.lectureEntier() == addition) {
+                            System.out.println("Bonne Réponse");
+                            System.out.println(Jeu.formaterEtatAvancement(true, i));
+                            Jeu.formaterResultat(true);
+                        } else {
+                            System.out.println("Mauvaise Réponse");
+                            System.out.println(Jeu.formaterEtatAvancement(false, i));
+                        }
                     }
+                    System.out.printf("Score : %s/%s%n", Jeu.formaterResultat(false), NB_OPERATION);
+                    Jeu.reset();
                     break;
 
                 // Si le choix est '2' alors on fait une multiplication
@@ -47,10 +57,20 @@ public class main {
                     // tirer un nombre aléatoire
                     int operandeMultiplication = Jeu.tirerOperande();
                     System.out.printf("5 multiplications sur la table de %s%n", operandeMultiplication);
-                    for (int i = 0; i < 6; i++) {
+                    for (int i = 0; i < NB_OPERATION; i++) {
                         int multiplication = (new Operation(MULTIPLICATION, operandeMultiplication, Jeu.tirerOperandeNonTiree())).operer();
-                        System.out.printf("%s x %s = %s%n", Operation.getOperande1(), Operation.getOperande2(), multiplication);
+                        System.out.printf("%s x %s = ", Operation.getOperande1(), Operation.getOperande2());
+                        if (LectureConsole.lectureEntier() == multiplication) {
+                            System.out.println("Bonne Réponse");
+                            System.out.println(Jeu.formaterEtatAvancement(true, i));
+                            Jeu.formaterResultat(true);
+                        } else {
+                            System.out.println("Mauvaise Réponse");
+                            System.out.println(Jeu.formaterEtatAvancement(false, i));
+                        }
                     }
+                    System.out.printf("Score : %s/%s%n", Jeu.formaterResultat(false), NB_OPERATION);
+                    Jeu.reset();
                     break;
             }
             Jeu.operandesDejaTires.clear();
